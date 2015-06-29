@@ -1,0 +1,380 @@
+
+U-Boot SPL 2014.01-00219-gc4d376f (Feb 18 2014 - 19:57:18)
+
+
+U-Boot 2014.01-00219-gc4d376f (Feb 18 2014 - 19:57:18)
+
+TEGRA30
+Board: NVIDIA Beaver
+I2C:   ready
+DRAM:  2 GiB
+MMC:   Tegra SD/MMC: 0, Tegra SD/MMC: 1
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Net Initialization Skipped
+No ethernet found.
+Hit any key to stop autoboot:  2  0 
+Tegra30 (Beaver) # 
+Tegra30 (Beaver) # usb reset
+(Re)start USB...
+USB0:   USB EHCI 1.00
+scanning bus 0 for devices... 2 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+       scanning usb for ethernet devices... 
+Warning: asx0 using MAC address from net device
+1 Ethernet Device(s) found
+Tegra30 (Beaver) # setenv bootargs 'ignore_loglevel console=ttyS0,115200n8 rw root=/dev/mmcblk0p1 rootwait gpt debug init=/bin/bash noinitrd'
+Tegra30 (Beaver) # setenv ipaddr 192.168.100.101; setenv serverip 192.168.100.1; setenv tftpserverip 192.168.100.1
+Tegra30 (Beaver) # tftpboot 0x81000000 zImage.multi_v7_defconfig
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.101
+Filename 'zImage.multi_v7_defconfig'.
+Load address: 0x81000000
+Loading: *#################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 ######################################
+	 3.4 MiB/s
+done
+Bytes transferred = 6273352 (5fb948 hex)
+Tegra30 (Beaver) # tftpboot 0x82000000 tegra30-beaver.dtb
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.101
+Filename 'tegra30-beaver.dtb'.
+Load address: 0x82000000
+Loading: *####
+	 3.1 MiB/s
+done
+Bytes transferred = 51191 (c7f7 hex)
+Tegra30 (Beaver) # bootz 0x81000000 - 0x82000000
+Kernel image @ 0x81000000 [ 0x000000 - 0x5fb948 ]
+## Flattened Device Tree blob at 82000000
+   Booting using the fdt blob at 0x82000000
+   Loading Device Tree to 8fff0000, end 8ffff7f6 ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.1.0-rc7-13577-gd4a4f75 (pwalmsley@sellafield) (gcc version 4.7.3 20130328 (prerelease) (crosstool-NG linaro-1.13.1-4.7-2013.04-20130415 - Linaro GCC 2013.04) ) #1 SMP Sun Jun 7 20:33:23 PDT 2015
+[    0.000000] CPU: ARMv7 Processor [412fc099] revision 9 (ARMv7), cr=10c5387d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] Machine model: NVIDIA Tegra30 Beaver evaluation board
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] cma: Reserved 64 MiB at 0xfb800000
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] On node 0 totalpages: 524032
+[    0.000000] free_area_init_node: node 0, pgdat c0f40780, node_mem_map ee7f8000
+[    0.000000]   DMA zone: 1520 pages used for memmap
+[    0.000000]   DMA zone: 0 pages reserved
+[    0.000000]   DMA zone: 194560 pages, LIFO batch:31
+[    0.000000]   HighMem zone: 329472 pages, LIFO batch:31
+[    0.000000] PERCPU: Embedded 12 pages/cpu @ee793000 s16960 r8192 d24000 u49152
+[    0.000000] pcpu-alloc: s16960 r8192 d24000 u49152 alloc=12*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 522512
+[    0.000000] Kernel command line: ignore_loglevel console=ttyS0,115200n8 rw root=/dev/mmcblk0p1 rootwait gpt debug init=/bin/bash noinitrd
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 1999056K/2096128K available (8012K kernel code, 1025K rwdata, 3616K rodata, 884K init, 318K bss, 31536K reserved, 65536K cma-reserved, 1252352K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0000000 - 0xff000000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xef800000   ( 760 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]     modules : 0xbf000000 - 0xbfe00000   (  14 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc0d64198   (11633 kB)
+[    0.000000]       .init : 0xc0d65000 - 0xc0e42000   ( 884 kB)
+[    0.000000]       .data : 0xc0e42000 - 0xc0f42760   (1026 kB)
+[    0.000000]        .bss : 0xc0f45000 - 0xc0f94a68   ( 319 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	Additional per-CPU info printed with stalls.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=4.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] /interrupt-controller@60004000: 160 interrupts forwarded to /interrupt-controller@50041000
+[    0.000000] L2C: platform modifies aux control register: 0x02080000 -> 0x3e480001
+[    0.000000] L2C: DT/platform modifies aux control register: 0x02080000 -> 0x3e480001
+[    0.000000] L2C-310 erratum 769419 enabled
+[    0.000000] L2C-310 enabling early BRESP for Cortex-A9
+[    0.000000] L2C-310: enabling full line of zeros but not enabled in Cortex-A9
+[    0.000000] L2C-310 ID prefetch enabled, offset 1 lines
+[    0.000000] L2C-310 dynamic clock gating enabled, standby mode enabled
+[    0.000000] L2C-310 cache controller enabled, 8 ways, 1024 kB
+[    0.000000] L2C-310: CACHE_ID 0x410000c7, AUX_CTRL 0x7e480001
+[    0.000014] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns
+[    0.000030] clocksource timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    0.000038] Switching to timer-based delay loop, resolution 1000ns
+[    0.002317] Console: colour dummy device 80x30
+[    0.002338] Calibrating delay loop (skipped), value calculated using timer frequency.. 2.00 BogoMIPS (lpj=5000)
+[    0.002347] pid_max: default: 32768 minimum: 301
+[    0.002436] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.002443] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.002851] CPU: Testing write buffer coherency: ok
+[    0.003111] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.003180] Setting up static identity map for 0x80209000 - 0x80209098
+[    0.005220] Tegra Revision: A03 SKU: 128 CPU Process: 4 Core Process: 0
+[    0.006714] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.007724] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.008743] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.008780] Brought up 4 CPUs
+[    0.008793] SMP: Total of 4 processors activated (8.00 BogoMIPS).
+[    0.008797] CPU: All CPU(s) started in SVC mode.
+[    0.009228] devtmpfs: initialized
+[    0.017607] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+[    0.018109] clocksource jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 9556302231375000 ns
+[    0.021571] pinctrl core: initialized pinctrl subsystem
+[    0.022943] NET: Registered protocol family 16
+[    0.025061] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.039944] cpuidle: using governor ladder
+[    0.054937] cpuidle: using governor menu
+[    0.063139] No ATAGs?
+[    0.063174] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+[    0.063180] hw-breakpoint: maximum watchpoint size is 4 bytes.
+[    0.065927] Serial: AMBA PL011 UART driver
+[    0.087556] vdd_5v_sata: Failed to request enable GPIO30: -517
+[    0.087622] reg-fixed-voltage regulators:regulator@3: Failed to register regulator: -517
+[    0.087727] usb1_vbus: Failed to request enable GPIO238: -517
+[    0.087779] reg-fixed-voltage regulators:regulator@4: Failed to register regulator: -517
+[    0.087880] usb3_vbus: Failed to request enable GPIO236: -517
+[    0.087932] reg-fixed-voltage regulators:regulator@5: Failed to register regulator: -517
+[    0.088077] sys_3v3_pexs: Failed to request enable GPIO95: -517
+[    0.088129] reg-fixed-voltage regulators:regulator@7: Failed to register regulator: -517
+[    0.089902] vgaarb: loaded
+[    0.090329] SCSI subsystem initialized
+[    0.090494] libata version 3.00 loaded.
+[    0.090675] usbcore: registered new interface driver usbfs
+[    0.090728] usbcore: registered new interface driver hub
+[    0.090766] usbcore: registered new device driver usb
+[    0.146714] media: Linux media interface: v0.10
+[    0.146755] Linux video capture interface: v2.00
+[    0.146784] pps_core: LinuxPPS API ver. 1 registered
+[    0.146789] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.146805] PTP clock support registered
+[    0.146979] EDAC MC: Ver: 3.0.0
+[    0.147676] Advanced Linux Sound Architecture Driver Initialized.
+[    0.148394] Switched to clocksource timer_us
+[    0.154712] NET: Registered protocol family 2
+[    0.155160] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.155209] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.155286] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.155367] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.155423] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.155593] NET: Registered protocol family 1
+[    0.155825] RPC: Registered named UNIX socket transport module.
+[    0.155831] RPC: Registered udp transport module.
+[    0.155835] RPC: Registered tcp transport module.
+[    0.155839] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.155855] PCI: CLS 0 bytes, default 64
+[    0.156560] CPU PMU: Failed to parse /pmu/interrupt-affinity[0]
+[    0.156593] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 counters available
+[    0.157519] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.163880] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.164403] NFS: Registering the id_resolver key type
+[    0.164440] Key type id_resolver registered
+[    0.164444] Key type id_legacy registered
+[    0.164484] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.165197] bounce: pool size: 64 pages
+[    0.165317] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    0.165329] io scheduler noop registered
+[    0.165337] io scheduler deadline registered
+[    0.165426] io scheduler cfq registered (default)
+[    0.170250] tegra30-pinctrl 70000868.pinmux: invalid group "sdmmc3_dat6_pd3" for function "rsvd1"
+[    0.170266] tegra30-pinctrl 70000868.pinmux: invalid group "sdmmc3_dat7_pd4" for function "rsvd1"
+[    0.170293] tegra30-pinctrl 70000868.pinmux: invalid group "vi_vsync_pd6" for function "rsvd1"
+[    0.170303] tegra30-pinctrl 70000868.pinmux: invalid group "vi_hsync_pd7" for function "rsvd1"
+[    0.170772] tegra30-pinctrl 70000868.pinmux: invalid group "hdmi_int_pn7" for function "rsvd1"
+[    0.170816] tegra30-pinctrl 70000868.pinmux: invalid group "ulpi_data3_po4" for function "rsvd1"
+[    0.171150] tegra30-pinctrl 70000868.pinmux: invalid group "vi_d10_pt2" for function "rsvd1"
+[    0.171164] tegra30-pinctrl 70000868.pinmux: invalid group "vi_d11_pt3" for function "rsvd1"
+[    0.171176] tegra30-pinctrl 70000868.pinmux: invalid group "vi_d0_pt4" for function "rsvd1"
+[    0.171217] tegra30-pinctrl 70000868.pinmux: invalid group "pu0" for function "rsvd1"
+[    0.171249] tegra30-pinctrl 70000868.pinmux: invalid group "pu3" for function "rsvd1"
+[    0.171279] tegra30-pinctrl 70000868.pinmux: invalid group "pu6" for function "rsvd1"
+[    0.171332] tegra30-pinctrl 70000868.pinmux: invalid group "pv3" for function "rsvd1"
+[    0.171828] tegra30-pinctrl 70000868.pinmux: invalid group "pbb0" for function "rsvd1"
+[    0.171942] tegra30-pinctrl 70000868.pinmux: invalid group "pcc1" for function "rsvd1"
+[    0.175840] tegra-pcie 3000.pcie-controller: 2x3 configuration
+[    0.175946] vdd_1v5_gen: supplied by vdd_5v_in
+[    0.175987] vdd_pexa,vdd_pexb: supplied by vdd_1v5_gen
+[    0.176054] tegra-pcie 3000.pcie-controller: Failed to get supply 'hvdd-pex': -517
+[    0.177082] tegra-ahb 6000c004.ahb: incorrect AHB base address in DT data - enabling workaround
+[    0.179654] tegra-apbdma 6000a000.dma: Tegra20 APB DMA driver register 32 channels
+[    0.180131] tegra-pmc 7000e400.pmc: i2c-thermtrip node not found, emergency thermal reset disabled.
+[    0.215717] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.217239] SuperH (H)SCI(F) driver initialized
+[    0.217684] msm_serial: driver initialized
+[    0.218322] console [ttyS0] disabled
+[    0.218362] 70006000.serial: ttyS0 at MMIO 0x70006000 (irq = 331, base_baud = 25500000) is a Tegra
+[    1.169712] console [ttyS0] enabled
+[    1.173736] STMicroelectronics ASC driver initialized
+[    1.180181] [drm] Initialized drm 1.1.0 20060810
+[    1.185978] reg-fixed-voltage regulators:regulator@8: Failed to resolve vin-supply for +VDD_5V_HDMI
+[    1.195022] tegra-hdmi 54280000.hdmi: failed to get HDMI regulator
+[    1.205892] loop: module loaded
+[    1.212993] m25p80 spi32766.1: w25q32 (4096 Kbytes)
+[    1.219645] CAN device driver interface
+[    1.224194] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.2.15-k
+[    1.231235] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    1.238022] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    1.245465] usbcore: registered new interface driver pegasus
+[    1.251158] usbcore: registered new interface driver asix
+[    1.256591] usbcore: registered new interface driver ax88179_178a
+[    1.262706] usbcore: registered new interface driver cdc_ether
+[    1.268571] usbcore: registered new interface driver smsc75xx
+[    1.274349] usbcore: registered new interface driver smsc95xx
+[    1.280117] usbcore: registered new interface driver net1080
+[    1.285798] usbcore: registered new interface driver cdc_subset
+[    1.291738] usbcore: registered new interface driver zaurus
+[    1.297373] usbcore: registered new interface driver cdc_ncm
+[    1.304456] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.310987] ehci-pci: EHCI PCI platform driver
+[    1.315462] ehci-platform: EHCI generic platform driver
+[    1.320804] ehci-omap: OMAP-EHCI Host Controller driver
+[    1.326099] ehci-orion: EHCI orion driver
+[    1.330179] SPEAr-ehci: EHCI SPEAr driver
+[    1.334261] ehci-st: EHCI STMicroelectronics driver
+[    1.339211] ehci-exynos: EHCI EXYNOS driver
+[    1.343480] tegra-ehci: Tegra EHCI driver
+[    1.347784] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.353975] ohci-pci: OHCI PCI platform driver
+[    1.358460] ohci-platform: OHCI generic platform driver
+[    1.363780] ohci-omap3: OHCI OMAP3 driver
+[    1.367851] SPEAr-ohci: OHCI SPEAr driver
+[    1.371936] ohci-st: OHCI STMicroelectronics driver
+[    1.376924] usbcore: registered new interface driver usb-storage
+[    1.383826] mousedev: PS/2 mouse device common for all mice
+[    1.391441] tegra_rtc 7000e000.rtc: rtc core: registered 7000e000.rtc as rtc1
+[    1.398608] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock
+[    1.417444] tps65910-rtc tps65910-rtc: rtc core: registered tps65910-rtc as rtc0
+[    1.424959] i2c /dev entries driver
+[    1.430048] usbcore: registered new interface driver uvcvideo
+[    1.435795] USB Video Class driver (1.1.1)
+[    1.439890] gspca_main: v2.14.0 registered
+[    1.446374] sdhci: Secure Digital Host Controller Interface driver
+[    1.452552] sdhci: Copyright(c) Pierre Ossman
+[    1.457687] Synopsys Designware Multimedia Card Interface Driver
+[    1.464280] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.470401] sdhci-tegra 78000000.sdhci: Got CD GPIO
+[    1.475308] sdhci-tegra 78000000.sdhci: Got WP GPIO
+[    1.481313] sdhci-tegra 78000000.sdhci: No vmmc regulator found
+[    1.487230] sdhci-tegra 78000000.sdhci: No vqmmc regulator found
+[    1.493229] mmc0: Invalid maximum block size, assuming 512 bytes
+[    1.533479] mmc0: SDHCI controller on 78000000.sdhci [78000000.sdhci] using ADMA
+[    1.542069] sdhci-tegra 78000600.sdhci: No vmmc regulator found
+[    1.547989] sdhci-tegra 78000600.sdhci: No vqmmc regulator found
+[    1.553990] mmc1: Invalid maximum block size, assuming 512 bytes
+[    1.598403] mmc1: SDHCI controller on 78000600.sdhci [78000600.sdhci] using ADMA
+[    1.606608] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.612754] usbcore: registered new interface driver usbhid
+[    1.618322] usbhid: USB HID core driver
+[    1.624111] usbcore: registered new interface driver snd-usb-audio
+[    1.709571] mmc1: new high speed MMC card at address 0001
+[    1.715270] mmcblk0: mmc1:0001 SEM16G 14.8 GiB 
+[    1.719884] mmcblk0boot0: mmc1:0001 SEM16G partition 1 1.00 MiB
+[    1.725871] mmcblk0boot1: mmc1:0001 SEM16G partition 2 1.00 MiB
+[    1.731848] mmcblk0rpmb: mmc1:0001 SEM16G partition 3 128 KiB
+[    1.740322] Primary GPT is invalid, using alternate GPT.
+[    1.745652]  mmcblk0: p1 p2 p3 p4 p5
+[    2.044860] tegra30-i2s 70080400.i2s: DMA channels sourced from device 70080000.ahub
+[    2.060562] tegra-snd-rt5640 sound: rt5640-aif1 <-> 70080400.i2s mapping ok
+[    2.069479] input: NVIDIA Tegra Beaver Headphones as /devices/soc0/sound/sound/card0/input0
+[    2.078826] NET: Registered protocol family 17
+[    2.083272] can: controller area network core (rev 20120528 abi 9)
+[    2.089503] NET: Registered protocol family 29
+[    2.093951] can: raw protocol (rev 20120528)
+[    2.098212] can: broadcast manager protocol (rev 20120528 t)
+[    2.103870] can: netlink gateway (rev 20130117) max_hops=1
+[    2.109645] Key type dns_resolver registered
+[    2.114285] ThumbEE CPU extension supported.
+[    2.118573] Registering SWP/SWPB emulation handler
+[    2.136982] tegra-pcie 3000.pcie-controller: 2x3 configuration
+[    2.142954] sys_3v3,vdd_3v3_alw: supplied by vdd_5v_in
+[    2.148113] sys_3v3_pexs: supplied by sys_3v3,vdd_3v3_alw
+[    2.156076] tegra-pcie 3000.pcie-controller: probing port 0, using 2 lanes
+[    2.221240] tegra-pcie 3000.pcie-controller: probing port 2, using 2 lanes
+[    2.631993] tegra-pcie 3000.pcie-controller: link 2 down, retrying
+[    3.042055] tegra-pcie 3000.pcie-controller: link 2 down, retrying
+[    3.452103] tegra-pcie 3000.pcie-controller: link 2 down, retrying
+[    3.460296] tegra-pcie 3000.pcie-controller: link 2 down, ignoring
+[    3.466619] tegra-pcie 3000.pcie-controller: PCI host bridge to bus 0000:00
+[    3.473588] pci_bus 0000:00: root bus resource [mem 0x20000000-0x27ffffff]
+[    3.480458] pci_bus 0000:00: root bus resource [mem 0x28000000-0x3fffffff pref]
+[    3.487758] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    3.493241] pci_bus 0000:00: root bus resource [io  0x1000-0xffff]
+[    3.499435] pci 0000:00:01.0: [10de:0e1c] type 01 class 0x060400
+[    3.505463] pci 0000:00:01.0: IOMMU is currently not supported for PCI
+[    3.512020] pci 0000:00:01.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    3.518774] PCI: bus0: Fast back to back transfers disabled
+[    3.524348] pci 0000:00:01.0: bridge configuration invalid ([bus 00-00]), reconfiguring
+[    3.532437] pci 0000:01:00.0: [10ec:8168] type 00 class 0x020000
+[    3.538456] pci 0000:01:00.0: reg 0x10: [io  0x0000-0x00ff]
+[    3.544038] pci 0000:01:00.0: reg 0x18: [mem 0x00000000-0x00000fff 64bit pref]
+[    3.551262] pci 0000:01:00.0: reg 0x20: [mem 0x00000000-0x00003fff 64bit pref]
+[    3.558486] pci 0000:01:00.0: IOMMU is currently not supported for PCI
+[    3.565056] pci 0000:01:00.0: supports D1 D2
+[    3.569323] pci 0000:01:00.0: PME# supported from D0 D1 D2 D3hot D3cold
+[    3.583421] PCI: bus1: Fast back to back transfers disabled
+[    3.588994] pci_bus 0000:01: busn_res: [bus 01-ff] end is updated to 01
+[    3.595653] pci 0000:00:01.0: BAR 9: assigned [mem 0x28000000-0x280fffff 64bit pref]
+[    3.603391] pci 0000:00:01.0: BAR 7: assigned [io  0x1000-0x1fff]
+[    3.609481] pci 0000:01:00.0: BAR 4: assigned [mem 0x28000000-0x28003fff 64bit pref]
+[    3.617223] pci 0000:01:00.0: BAR 2: assigned [mem 0x28004000-0x28004fff 64bit pref]
+[    3.624964] pci 0000:01:00.0: BAR 0: assigned [io  0x1000-0x10ff]
+[    3.631052] pci 0000:00:01.0: PCI bridge to [bus 01]
+[    3.636010] pci 0000:00:01.0:   bridge window [io  0x1000-0x1fff]
+[    3.642096] pci 0000:00:01.0:   bridge window [mem 0x28000000-0x280fffff 64bit pref]
+[    3.649839] pci 0000:00:01.0: nv_msi_ht_cap_quirk didn't locate host bridge
+[    3.656876] pcieport 0000:00:01.0: enabling device (0140 -> 0143)
+[    3.663096] pcieport 0000:00:01.0: Signaling PME through PCIe PME interrupt
+[    3.670054] pci 0000:01:00.0: Signaling PME through PCIe PME interrupt
+[    3.676574] pcie_pme 0000:00:01.0:pcie01: service driver pcie_pme loaded
+[    3.683439] r8169 Gigabit Ethernet driver 2.3LK-NAPI loaded
+[    3.689023] r8169 0000:01:00.0: enabling device (0140 -> 0143)
+[    3.695523] r8169 0000:01:00.0 eth0: RTL8168evl/8111evl at 0xf00e8000, 02:04:4b:01:60:a6, XID 0c900800 IRQ 375
+[    3.705520] r8169 0000:01:00.0 eth0: jumbo features [frames: 9200 bytes, tx checksumming: ko]
+[    3.714652] +VDD_5V_HDMI: supplied by sys_3v3,vdd_3v3_alw
+[    3.720137] vdd_1v8_gen: supplied by vdd_5v_in
+[    3.726715] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    3.733352] [drm] No driver support for vblank timestamp query.
+[    3.739290] drm drm: No connectors reported connected with modes
+[    3.745314] [drm] Cannot find any crtc or sizes - going 1024x768
+[    3.771142] Console: switching to colour frame buffer device 128x48
+[    3.783669] drm drm: fb0:  frame buffer device
+[    3.788101] drm drm: registered panic notifier
+[    3.803410] [drm] Initialized tegra 0.0.0 20120330 on minor 0
+[    3.811575] usb3_vbus: supplied by vdd_5v_in
+[    3.817908] utmi_phy_clk_enable: timeout waiting for phy to stabilize
+[    3.824375] tegra-ehci 7d004000.usb: EHCI Host Controller
+[    3.829785] tegra-ehci 7d004000.usb: new USB bus registered, assigned bus number 1
+[    3.838481] tegra-ehci 7d004000.usb: irq 343, io mem 0x7d004000
+[    3.853407] tegra-ehci 7d004000.usb: USB 2.0 started, EHCI 1.00
+[    3.859825] hub 1-0:1.0: USB hub found
+[    3.863615] hub 1-0:1.0: 1 port detected
+[    3.868377] tegra-ehci 7d008000.usb: EHCI Host Controller
+[    3.873813] tegra-ehci 7d008000.usb: new USB bus registered, assigned bus number 2
+[    3.881597] tegra-ehci 7d008000.usb: irq 344, io mem 0x7d008000
+[    3.893407] tegra-ehci 7d008000.usb: USB 2.0 started, EHCI 1.00
+[    3.899764] hub 2-0:1.0: USB hub found
+[    3.903545] hub 2-0:1.0: 1 port detected
+[    3.912557] tps65910-rtc tps65910-rtc: setting system clock to 2000-01-01 00:00:02 UTC (946684802)
+[    3.926117] usb1_vbus: disabling
+[    3.929426] vdd_sata,avdd_plle: disabling
+[    3.933982] ALSA device list:
+[    3.936942]   #0: NVIDIA Tegra Beaver
+[    3.942353] EXT4-fs (mmcblk0p1): mounting ext3 file system using the ext4 subsystem
+[    3.957697] EXT4-fs (mmcblk0p1): warning: mounting fs with errors, running e2fsck is recommended
+[    3.967991] EXT4-fs (mmcblk0p1): recovery complete
+[    3.972800] EXT4-fs (mmcblk0p1): mounted filesystem with ordered data mode. Opts: (null)
+[    3.980916] VFS: Mounted root (ext3 filesystem) on device 179:1.
+[    3.996387] devtmpfs: mounted
+[    4.000117] Freeing unused kernel memory: 884K (c0d65000 - c0e42000)
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+root@(none):/# [    4.213452] usb 2-1: new high-speed USB device number 2 using tegra-ehci
