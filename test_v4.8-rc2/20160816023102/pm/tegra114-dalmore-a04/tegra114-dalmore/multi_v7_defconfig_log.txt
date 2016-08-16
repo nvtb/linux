@@ -1,0 +1,612 @@
+
+U-Boot SPL 2014.01-00219-gc4d376f (Feb 18 2014 - 19:57:32)
+
+
+U-Boot 2014.01-00219-gc4d376f (Feb 18 2014 - 19:57:32)
+
+TEGRA114
+Board: NVIDIA Dalmore
+I2C:   ready
+DRAM:  2 GiB
+MMC:   Tegra SD/MMC: 0, Tegra SD/MMC: 1
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Net Initialization Skipped
+No ethernet found.
+Hit any key to stop autoboot:  2  1  0 
+Tegra114 (Dalmore) # 
+Tegra114 (Dalmore) # usb reset
+(Re)start USB...
+USB0:   USB EHCI 1.10
+scanning bus 0 for devices... 2 USB Device(s) found
+       scanning usb for storage devices... 0 Storage Device(s) found
+       scanning usb for ethernet devices... 
+Warning: asx0 using MAC address from net device
+1 Ethernet Device(s) found
+Tegra114 (Dalmore) # setenv bootargs 'ignore_loglevel console=ttyS0,115200n8 rw root=PARTUUID=7369c667-ff51-ec4a-29cd-baabf2fbe346 rootwait gpt debug earlyprintk init=/bin/bash'
+Tegra114 (Dalmore) # setenv ipaddr 192.168.100.100; setenv serverip 192.168.100.1; setenv tftpserverip 192.168.100.1
+Tegra114 (Dalmore) # tftpboot 0x81000000 zImage.multi_v7_defconfig
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.100
+Filename 'zImage.multi_v7_defconfig'.
+Load address: 0x81000000
+Loading: *#################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #############################
+	 3 MiB/s
+done
+Bytes transferred = 7092008 (6c3728 hex)
+Tegra114 (Dalmore) # tftpboot 0x82000000 tegra114-dalmore.dtb
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.100
+Filename 'tegra114-dalmore.dtb'.
+Load address: 0x82000000
+Loading: *###
+	 2.6 MiB/s
+done
+Bytes transferred = 34956 (888c hex)
+Tegra114 (Dalmore) # bootz 0x81000000 - 0x82000000
+Kernel image @ 0x81000000 [ 0x000000 - 0x6c3728 ]
+## Flattened Device Tree blob at 82000000
+   Booting using the fdt blob at 0x82000000
+   Loading Device Tree to 8fff4000, end 8ffff88b ... OK
+
+Starting kernel ...
+
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.8.0-rc2-109794-g694d0d0 (pwalmsley@sellafield) (gcc version 4.7.3 20130328 (prerelease) (crosstool-NG linaro-1.13.1-4.7-2013.04-20130415 - Linaro GCC 2013.04) ) #1 SMP Tue Aug 16 02:33:34 PDT 2016
+[    0.000000] CPU: ARMv7 Processor [412fc0f2] revision 2 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+[    0.000000] OF: fdt:Machine model: NVIDIA Tegra114 Dalmore evaluation board
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] cma: Reserved 64 MiB at 0xfb800000
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] On node 0 totalpages: 524032
+[    0.000000] free_area_init_node: node 0, pgdat c141cf40, node_mem_map eeff8000
+[    0.000000]   DMA zone: 1536 pages used for memmap
+[    0.000000]   DMA zone: 0 pages reserved
+[    0.000000]   DMA zone: 196608 pages, LIFO batch:31
+[    0.000000]   HighMem zone: 327424 pages, LIFO batch:31
+[    0.000000] percpu: Embedded 14 pages/cpu @eef9b000 s26496 r8192 d22656 u57344
+[    0.000000] pcpu-alloc: s26496 r8192 d22656 u57344 alloc=14*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 522496
+[    0.000000] Kernel command line: ignore_loglevel console=ttyS0,115200n8 rw root=PARTUUID=7369c667-ff51-ec4a-29cd-baabf2fbe346 rootwait gpt debug earlyprintk init=/bin/bash
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 1995096K/2096128K available (9216K kernel code, 1147K rwdata, 3968K rodata, 2048K init, 343K bss, 35496K reserved, 65536K cma-reserved, 1244160K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0800000 - 0xff800000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xf0000000   ( 768 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]     modules : 0xbf000000 - 0xbfe00000   (  14 MB)
+[    0.000000]       .text : 0xc0208000 - 0xc0c00000   (10208 kB)
+[    0.000000]       .init : 0xc1100000 - 0xc1300000   (2048 kB)
+[    0.000000]       .data : 0xc1300000 - 0xc141edc0   (1148 kB)
+[    0.000000]        .bss : 0xc1420000 - 0xc1475c88   ( 344 kB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Hierarchical RCU implementation.
+[    0.000000] 	Build-time adjustment of leaf fanout to 32.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=16 to nr_cpu_ids=4.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=32, nr_cpu_ids=4
+[    0.000000] NR_IRQS:16 nr_irqs:16 16
+[    0.000000] /interrupt-controller@60004000: 160 interrupts forwarded to /interrupt-controller@50041000
+[    0.000000] Tegra clk 127: register failed with -17
+[    0.000007] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns
+[    0.000025] clocksource: timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    0.000040] Switching to timer-based delay loop, resolution 1000ns
+[    0.003137] arm_arch_timer: Architected cp15 timer(s) running at 12.00MHz (virt).
+[    0.003155] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x2c47f4ee7, max_idle_ns: 440795202497 ns
+[    0.003174] sched_clock: 56 bits at 12MHz, resolution 83ns, wraps every 4398046511096ns
+[    0.003186] Switching to timer-based delay loop, resolution 83ns
+[    0.003574] Console: colour dummy device 80x30
+[    0.003602] Calibrating delay loop (skipped), value calculated using timer frequency.. 24.00 BogoMIPS (lpj=60000)
+[    0.003618] pid_max: default: 32768 minimum: 301
+[    0.003715] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.003727] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.004356] CPU: Testing write buffer coherency: ok
+[    0.004568] /cpus/cpu@0 missing clock-frequency property
+[    0.004597] /cpus/cpu@1 missing clock-frequency property
+[    0.004625] /cpus/cpu@2 missing clock-frequency property
+[    0.004656] /cpus/cpu@3 missing clock-frequency property
+[    0.004668] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.004691] Setting up static identity map for 0x80300000 - 0x80300098
+[    0.007242] Tegra Revision: A01 SKU: 0 CPU Process: 1 SoC Process: 0
+[    0.008661] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.009362] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.010047] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.010133] Brought up 4 CPUs
+[    0.010155] SMP: Total of 4 processors activated (96.00 BogoMIPS).
+[    0.010163] CPU: All CPU(s) started in SVC mode.
+[    0.011637] devtmpfs: initialized
+[    0.023299] VFP support v0.3: implementor 41 architecture 4 part 30 variant f rev 0
+[    0.023669] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 9556302231375000 ns
+[    0.025028] pinctrl core: initialized pinctrl subsystem
+[    0.026643] NET: Registered protocol family 16
+[    0.028700] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.043051] cpuidle: using governor menu
+[    0.058200] No ATAGs?
+[    0.058229] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.058239] hw-breakpoint: maximum watchpoint size is 8 bytes.
+[    0.063283] Serial: AMBA PL011 UART driver
+[    0.064622] tegra-mc 70019000.memory-controller: no memory timings for RAM code 3 registered
+[    0.092469] dvdd_ts: Failed to request enable GPIO61: -517
+[    0.092486] reg-fixed-voltage regulators:regulator@1: Failed to register regulator: -517
+[    0.092579] usb1_vbus: Failed to request enable GPIO108: -517
+[    0.092594] reg-fixed-voltage regulators:regulator@3: Failed to register regulator: -517
+[    0.092686] usb2_vbus: Failed to request enable GPIO86: -517
+[    0.092699] reg-fixed-voltage regulators:regulator@4: Failed to register regulator: -517
+[    0.093123] VDD_5V0_HDMI_CON: Failed to request enable GPIO81: -517
+[    0.093136] reg-fixed-voltage regulators:regulator@7: Failed to register regulator: -517
+[    0.095837] vgaarb: loaded
+[    0.096639] SCSI subsystem initialized
+[    0.096806] libata version 3.00 loaded.
+[    0.097098] usbcore: registered new interface driver usbfs
+[    0.097176] usbcore: registered new interface driver hub
+[    0.097257] usbcore: registered new device driver usb
+[    0.100775] tps65090 2-0048: No cache defaults, reading back from HW
+[    0.102691] TPS65090_RAILSDCDC1: supplied by vdd_ac_bat
+[    0.103261] vdd_hdmi_5v0: supplied by vdd-sys-5v0
+[    0.104033] TPS65090_RAILSDCDC2: supplied by vdd_ac_bat
+[    0.105098] TPS65090_RAILSDCDC3: supplied by vdd_ac_bat
+[    0.105641] TPS65090_RAILSFET1: supplied by vdd_ac_bat
+[    0.106040] TPS65090_RAILSFET2: supplied by vdd_ac_bat
+[    0.106411] TPS65090_RAILSFET3: supplied by vdd-sys-3v3
+[    0.106956] TPS65090_RAILSFET4: supplied by vdd-sys-3v3
+[    0.107489] TPS65090_RAILSFET5: supplied by vdd-sys-3v3
+[    0.108016] TPS65090_RAILSFET6: supplied by vdd-sys-3v3
+[    0.108893] TPS65090_RAILSFET7: supplied by vdd-sys-3v3
+[    0.109427] TPS65090_RAILSLDO1: supplied by vdd_ac_bat
+[    0.109654] TPS65090_RAILSLDO2: supplied by vdd_ac_bat
+[    0.110490] palmas 2-0058: Irq flag is 0x00000008
+[    0.112043] genirq: Setting trigger mode 8 for irq 341 failed (irq_chip_set_type_parent+0x0/0x28)
+[    0.112089] dummy 2-0059: Failed to request IRQ 341 for palmas: -22
+[    0.112440] palmas: probe of 2-0058 failed with error -22
+[    0.112640] pps_core: LinuxPPS API ver. 1 registered
+[    0.112649] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.112673] PTP clock support registered
+[    0.112858] EDAC MC: Ver: 3.0.0
+[    0.115259] clocksource: Switched to clocksource arch_sys_counter
+[    0.125979] NET: Registered protocol family 2
+[    0.126495] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.126593] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.126780] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.126833] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.126875] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.127041] NET: Registered protocol family 1
+[    0.127362] RPC: Registered named UNIX socket transport module.
+[    0.127372] RPC: Registered udp transport module.
+[    0.127379] RPC: Registered tcp transport module.
+[    0.127387] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.127398] PCI: CLS 0 bytes, default 64
+[    0.129524] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.130029] workingset: timestamp_bits=30 max_order=19 bucket_order=0
+[    0.142048] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.142961] NFS: Registering the id_resolver key type
+[    0.142985] Key type id_resolver registered
+[    0.142993] Key type id_legacy registered
+[    0.143038] ntfs: driver 2.1.32 [Flags: R/O].
+[    0.144323] bounce: pool size: 64 pages
+[    0.144529] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+[    0.144539] io scheduler noop registered
+[    0.144547] io scheduler deadline registered
+[    0.144735] io scheduler cfq registered (default)
+[    0.148793] libphy: mdio_driver_register: phy-bcm-ns2-pci
+[    0.169785] tegra-apbdma 6000a000.dma: Tegra20 APB DMA driver register 32 channels
+[    0.171358] tegra-pmc 7000e400.pmc: i2c-thermtrip node not found, emergency thermal reset disabled.
+[    0.239541] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.242596] console [ttyS0] disabled
+[    0.242664] 70006300.serial: ttyS0 at MMIO 0x70006300 (irq = 329, base_baud = 25500000) is a Tegra
+[    1.131373] console [ttyS0] enabled
+[    1.135647] SuperH (H)SCI(F) driver initialized
+[    1.141088] msm_serial: driver initialized
+[    1.145372] STMicroelectronics ASC driver initialized
+[    1.153858] [drm] Initialized drm 1.1.0 20060810
+[    1.161384] tegra-hdmi 54280000.hdmi: failed to get HDMI regulator
+[    1.167925] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.187082] brd: module loaded
+[    1.196492] loop: module loaded
+[    1.213112] random: fast init done
+[    1.216694] m25p80 spi32766.0: w25q32dw (4096 Kbytes)
+[    1.225306] libphy: Fixed MDIO Bus: probed
+[    1.230211] CAN device driver interface
+[    1.235968] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.3.0-k
+[    1.242937] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    1.251473] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    1.258933] usbcore: registered new interface driver pegasus
+[    1.264664] usbcore: registered new interface driver asix
+[    1.270118] usbcore: registered new interface driver ax88179_178a
+[    1.276264] usbcore: registered new interface driver cdc_ether
+[    1.282169] usbcore: registered new interface driver smsc75xx
+[    1.287987] usbcore: registered new interface driver smsc95xx
+[    1.293790] usbcore: registered new interface driver net1080
+[    1.299505] usbcore: registered new interface driver cdc_subset
+[    1.305477] usbcore: registered new interface driver zaurus
+[    1.311126] usbcore: registered new interface driver cdc_ncm
+[    1.318603] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.325142] ehci-pci: EHCI PCI platform driver
+[    1.329642] ehci-platform: EHCI generic platform driver
+[    1.335057] ehci-orion: EHCI orion driver
+[    1.339208] SPEAr-ehci: EHCI SPEAr driver
+[    1.343367] ehci-st: EHCI STMicroelectronics driver
+[    1.348388] ehci-exynos: EHCI EXYNOS driver
+[    1.352731] ehci-atmel: EHCI Atmel driver
+[    1.356880] tegra-ehci: Tegra EHCI driver
+[    1.361185] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    1.367387] ohci-pci: OHCI PCI platform driver
+[    1.371890] ohci-platform: OHCI generic platform driver
+[    1.377272] ohci-omap3: OHCI OMAP3 driver
+[    1.381422] SPEAr-ohci: OHCI SPEAr driver
+[    1.385578] ohci-st: OHCI STMicroelectronics driver
+[    1.390597] ohci-atmel: OHCI Atmel driver
+[    1.395304] usbcore: registered new interface driver usb-storage
+[    1.402790] mousedev: PS/2 mouse device common for all mice
+[    1.411415] tegra_rtc 7000e000.rtc: rtc core: registered 7000e000.rtc as rtc1
+[    1.418609] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock
+[    1.425326] i2c /dev entries driver
+[    1.432908] sbs-battery 0-000b: sbs_probe: Failed to get device status
+[    1.439463] sbs-battery: probe of 0-000b failed with error -121
+[    1.454370] sdhci: Secure Digital Host Controller Interface driver
+[    1.460569] sdhci: Copyright(c) Pierre Ossman
+[    1.466346] Synopsys Designware Multimedia Card Interface Driver
+[    1.473349] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.479714] sdhci-tegra 78000400.sdhci: Got CD GPIO
+[    1.484623] sdhci-tegra 78000400.sdhci: Got WP GPIO
+[    1.490641] mmc0: Invalid maximum block size, assuming 512 bytes
+[    1.540409] mmc0: SDHCI controller on 78000400.sdhci [78000400.sdhci] using ADMA
+[    1.548076] mmc1: Invalid maximum block size, assuming 512 bytes
+[    1.600272] mmc1: SDHCI controller on 78000600.sdhci [78000600.sdhci] using ADMA
+[    1.609444] ledtrig-cpu: registered to indicate activity on CPUs
+[    1.615804] usbcore: registered new interface driver usbhid
+[    1.621389] usbhid: USB HID core driver
+[    1.631437] NET: Registered protocol family 10
+[    1.636764] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.643375] NET: Registered protocol family 17
+[    1.647848] can: controller area network core (rev 20120528 abi 9)
+[    1.654101] NET: Registered protocol family 29
+[    1.658559] can: raw protocol (rev 20120528)
+[    1.662841] can: broadcast manager protocol (rev 20160617 t)
+[    1.668514] can: netlink gateway (rev 20130117) max_hops=1
+[    1.674366] Key type dns_resolver registered
+[    1.679291] ThumbEE CPU extension supported.
+[    1.683582] Registering SWP/SWPB emulation handler
+[    1.694335] usb1_vbus: supplied by vdd-sys-5v0
+[    1.710309] usb2_vbus: supplied by vdd-sys-5v0
+[    1.723963] VDD_5V0_HDMI_CON: supplied by vdd-sys-5v0
+[    1.729219] mmc0: new high speed SDHC card at address aaaa
+[    1.731522] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    1.733230] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.739303] tegra-ehci 7d008000.usb: EHCI Host Controller
+[    1.739337] tegra-ehci 7d008000.usb: new USB bus registered, assigned bus number 1
+[    1.739646] tegra-ehci 7d008000.usb: irq 339, io mem 0x7d008000
+[    1.750315] tegra-ehci 7d008000.usb: USB 2.0 started, EHCI 1.10
+[    1.751686] hub 1-0:1.0: USB hub found
+[    1.751741] hub 1-0:1.0: 1 port detected
+[    1.755187] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    1.757307] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.759172] input: gpio-keys as /devices/soc0/gpio-keys/input/input0
+[    1.759549] hctosys: unable to open rtc device (rtc0)
+[    1.762528] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    1.764081] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.772197] vdd_hdmi_5v0: disabling
+[    1.774011] dvdd_ts: disabling
+[    1.774017] usb1_vbus: disabling
+[    1.774023] VDD_5V0_HDMI_CON: disabling
+[    1.830036] mmcblk0: mmc0:aaaa SL16G 14.8 GiB 
+[    1.853373]  mmcblk0: p1 p2 p3
+[    1.858816] Waiting for root device PARTUUID=7369c667-ff51-ec4a-29cd-baabf2fbe346...
+[    1.862751] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    1.862904] mmc1: new high speed MMC card at address 0001
+[    1.864905] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.867261] mmcblk1: mmc1:0001 SEM32G 29.1 GiB 
+[    1.868124] mmcblk1boot0: mmc1:0001 SEM32G partition 1 4.00 MiB
+[    1.868980] mmcblk1boot1: mmc1:0001 SEM32G partition 2 4.00 MiB
+[    1.869543] mmcblk1rpmb: mmc1:0001 SEM32G partition 3 4.00 MiB
+[    1.878136]  mmcblk1: p1 p2 p3 p4 p5 p6 p7 p8
+[    1.886983] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    1.888771] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    1.922736] EXT4-fs (mmcblk1p1): mounting ext3 file system using the ext4 subsystem
+[    1.953955] EXT4-fs (mmcblk1p1): recovery complete
+[    1.958833] EXT4-fs (mmcblk1p1): mounted filesystem with ordered data mode. Opts: (null)
+[    1.966994] VFS: Mounted root (ext3 filesystem) on device 179:17.
+[    1.977463] devtmpfs: mounted
+[    1.982441] Freeing unused kernel memory: 2048K (c1100000 - c1300000)
+[    2.080307] usb 1-1: new high-speed USB device number 2 using tegra-ehci
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+root@(none):/# [    3.081037] asix 1-1:1.0 eth0: register 'asix' at usb-7d008000.usb-1, ASIX AX88772 USB 2.0 Ethernet, 00:50:b6:0d:b5:16
+[    3.094454] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    3.102303] tegra-dsi 54300000.dsi: cannot get VDD supply
+mount -t sysfs none /sys
+root@(none):/# 
+root@(none):/# mount -t debugfs none /sys/kernel/debug
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:20 1970
+[    5.384362] PM: Syncing filesystems ... done.
+[    5.391201] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    5.399452] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    5.409108] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    5.417941] Suspending console(s) (use no_console_suspend to debug)
+[    5.467333] PM: suspend of devices complete after 41.820 msecs
+[    5.469897] PM: late suspend of devices complete after 2.548 msecs
+[    5.471840] PM: noirq suspend of devices complete after 1.932 msecs
+[    5.471844] Disabling non-boot CPUs ...
+[    5.472678] CPU1: shutdown
+[    5.512897] CPU2: shutdown
+[    5.542207] IRQ17 no longer affine to CPU3
+[    5.542567] CPU3: shutdown
+[    5.556467] Entering suspend state LP1
+[    5.556492] Enabling non-boot CPUs ...
+[    5.586965] CPU1 is up
+[    5.617161] CPU2 is up
+[    5.652489] CPU3 is up
+[    5.653683] PM: noirq resume of devices complete after 1.183 msecs
+[    5.656239] PM: early resume of devices complete after 2.100 msecs
+[    5.717237] PM: resume of devices complete after 60.981 msecs
+[    5.721661] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    5.723121] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    5.797494] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:28 1970
+[    6.232486] PM: Syncing filesystems ... done.
+[    6.237805] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    6.246189] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    6.255860] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    6.264677] Suspending console(s) (use no_console_suspend to debug)
+[    6.317148] PM: suspend of devices complete after 44.907 msecs
+[    6.319612] PM: late suspend of devices complete after 2.448 msecs
+[    6.321518] PM: noirq suspend of devices complete after 1.895 msecs
+[    6.321522] Disabling non-boot CPUs ...
+[    6.321949] IRQ17 no longer affine to CPU1
+[    6.322331] CPU1: shutdown
+[    6.357861] CPU2: shutdown
+[    6.387516] CPU3: shutdown
+[    6.411439] Entering suspend state LP1
+[    6.411463] Enabling non-boot CPUs ...
+[    6.441927] CPU1 is up
+[    6.472144] CPU2 is up
+[    6.502467] CPU3 is up
+[    6.503652] PM: noirq resume of devices complete after 1.175 msecs
+[    6.506226] PM: early resume of devices complete after 2.124 msecs
+[    6.566975] PM: resume of devices complete after 60.733 msecs
+[    6.576987] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    6.578268] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    6.651759] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:36 1970
+[    7.071792] PM: Syncing filesystems ... done.
+[    7.077411] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    7.085797] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    7.095467] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    7.104285] Suspending console(s) (use no_console_suspend to debug)
+[    7.152526] PM: suspend of devices complete after 40.670 msecs
+[    7.154838] PM: late suspend of devices complete after 2.297 msecs
+[    7.156739] PM: noirq suspend of devices complete after 1.891 msecs
+[    7.156743] Disabling non-boot CPUs ...
+[    7.157609] CPU1: shutdown
+[    7.192778] CPU2: shutdown
+[    7.222097] IRQ17 no longer affine to CPU3
+[    7.222459] CPU3: shutdown
+[    7.246449] Entering suspend state LP1
+[    7.246473] Enabling non-boot CPUs ...
+[    7.276895] CPU1 is up
+[    7.307106] CPU2 is up
+[    7.337424] CPU3 is up
+[    7.338619] PM: noirq resume of devices complete after 1.185 msecs
+[    7.341146] PM: early resume of devices complete after 2.087 msecs
+[    7.402267] PM: resume of devices complete after 61.101 msecs
+[    7.406802] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    7.408267] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    7.482723] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:44 1970
+[    7.904031] PM: Syncing filesystems ... done.
+[    7.909876] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    7.918229] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    7.927908] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    7.936750] Suspending console(s) (use no_console_suspend to debug)
+[    7.987444] PM: suspend of devices complete after 43.142 msecs
+[    7.989678] PM: late suspend of devices complete after 2.218 msecs
+[    7.991625] PM: noirq suspend of devices complete after 1.938 msecs
+[    7.991629] Disabling non-boot CPUs ...
+[    7.992106] IRQ17 no longer affine to CPU1
+[    7.992498] CPU1: shutdown
+[    8.027755] CPU2: shutdown
+[    8.052414] CPU3: shutdown
+[    8.076404] Entering suspend state LP1
+[    8.076429] Enabling non-boot CPUs ...
+[    8.106846] CPU1 is up
+[    8.137061] CPU2 is up
+[    8.167388] CPU3 is up
+[    8.168557] PM: noirq resume of devices complete after 1.160 msecs
+[    8.171084] PM: early resume of devices complete after 2.075 msecs
+[    8.232167] PM: resume of devices complete after 61.066 msecs
+[    8.236593] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    8.238050] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    8.312520] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:52 1970
+[    8.736955] PM: Syncing filesystems ... done.
+[    8.742804] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    8.751185] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    8.760859] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    8.769674] Suspending console(s) (use no_console_suspend to debug)
+[    8.817448] PM: suspend of devices complete after 40.204 msecs
+[    8.819745] PM: late suspend of devices complete after 2.282 msecs
+[    8.821658] PM: noirq suspend of devices complete after 1.903 msecs
+[    8.821662] Disabling non-boot CPUs ...
+[    8.822519] CPU1: shutdown
+[    8.857697] CPU2: shutdown
+[    8.887011] IRQ17 no longer affine to CPU3
+[    8.887377] CPU3: shutdown
+[    8.911366] Entering suspend state LP1
+[    8.911391] Enabling non-boot CPUs ...
+[    8.941817] CPU1 is up
+[    8.972029] CPU2 is up
+[    9.002345] CPU3 is up
+[    9.003538] PM: noirq resume of devices complete after 1.182 msecs
+[    9.006493] PM: early resume of devices complete after 2.501 msecs
+[    9.067227] PM: resume of devices complete after 60.716 msecs
+[    9.071665] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    9.073131] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    9.147594] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:00 1970
+[    9.571300] PM: Syncing filesystems ... done.
+[    9.576852] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    9.585231] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[    9.594886] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    9.603711] Suspending console(s) (use no_console_suspend to debug)
+[    9.652292] PM: suspend of devices complete after 41.005 msecs
+[    9.654529] PM: late suspend of devices complete after 2.221 msecs
+[    9.656458] PM: noirq suspend of devices complete after 1.919 msecs
+[    9.656462] Disabling non-boot CPUs ...
+[    9.657316] CPU1: shutdown
+[    9.692673] CPU2: shutdown
+[    9.722324] CPU3: shutdown
+[    9.746326] Entering suspend state LP1
+[    9.746351] Enabling non-boot CPUs ...
+[    9.776777] CPU1 is up
+[    9.806982] CPU2 is up
+[    9.837291] CPU3 is up
+[    9.838466] PM: noirq resume of devices complete after 1.165 msecs
+[    9.841044] PM: early resume of devices complete after 2.128 msecs
+[    9.902120] PM: resume of devices complete after 61.058 msecs
+[    9.906559] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[    9.908018] tegra-dsi 54300000.dsi: cannot get VDD supply
+[    9.978333] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:08 1970
+[   10.402762] PM: Syncing filesystems ... done.
+[   10.408236] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   10.416608] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[   10.426279] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   10.435132] Suspending console(s) (use no_console_suspend to debug)
+[   10.482402] PM: suspend of devices complete after 39.715 msecs
+[   10.484677] PM: late suspend of devices complete after 2.259 msecs
+[   10.486582] PM: noirq suspend of devices complete after 1.895 msecs
+[   10.486586] Disabling non-boot CPUs ...
+[   10.487466] CPU1: shutdown
+[   10.532619] CPU2: shutdown
+[   10.567310] CPU3: shutdown
+[   10.591293] Entering suspend state LP1
+[   10.591318] Enabling non-boot CPUs ...
+[   10.621745] CPU1 is up
+[   10.651964] CPU2 is up
+[   10.682296] CPU3 is up
+[   10.683468] PM: noirq resume of devices complete after 1.162 msecs
+[   10.686437] PM: early resume of devices complete after 2.512 msecs
+[   10.747087] PM: resume of devices complete after 60.634 msecs
+[   10.751506] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[   10.752963] tegra-dsi 54300000.dsi: cannot get VDD supply
+[   10.823393] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:16 1970
+[   11.251605] PM: Syncing filesystems ... done.
+[   11.257124] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   11.265495] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[   11.275166] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   11.283984] Suspending console(s) (use no_console_suspend to debug)
+[   11.332061] PM: suspend of devices complete after 40.510 msecs
+[   11.334581] PM: late suspend of devices complete after 2.504 msecs
+[   11.336489] PM: noirq suspend of devices complete after 1.897 msecs
+[   11.336493] Disabling non-boot CPUs ...
+[   11.336951] IRQ17 no longer affine to CPU1
+[   11.337341] CPU1: shutdown
+[   11.372598] CPU2: shutdown
+[   11.402272] CPU3: shutdown
+[   11.426265] Entering suspend state LP1
+[   11.426290] Enabling non-boot CPUs ...
+[   11.456724] CPU1 is up
+[   11.486936] CPU2 is up
+[   11.517239] CPU3 is up
+[   11.518410] PM: noirq resume of devices complete after 1.160 msecs
+[   11.520938] PM: early resume of devices complete after 2.071 msecs
+[   11.582035] PM: resume of devices complete after 61.080 msecs
+[   11.586483] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[   11.587935] tegra-dsi 54300000.dsi: cannot get VDD supply
+[   11.662297] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:24 1970
+[   12.090608] PM: Syncing filesystems ... done.
+[   12.096147] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   12.104471] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[   12.114147] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   12.122972] Suspending console(s) (use no_console_suspend to debug)
+[   12.172312] PM: suspend of devices complete after 41.761 msecs
+[   12.174608] PM: late suspend of devices complete after 2.281 msecs
+[   12.176527] PM: noirq suspend of devices complete after 1.909 msecs
+[   12.176531] Disabling non-boot CPUs ...
+[   12.177384] CPU1: shutdown
+[   12.212580] CPU2: shutdown
+[   12.241876] IRQ17 no longer affine to CPU3
+[   12.242239] CPU3: shutdown
+[   12.266224] Entering suspend state LP1
+[   12.266248] Enabling non-boot CPUs ...
+[   12.296680] CPU1 is up
+[   12.326891] CPU2 is up
+[   12.357204] CPU3 is up
+[   12.358399] PM: noirq resume of devices complete after 1.185 msecs
+[   12.360979] PM: early resume of devices complete after 2.125 msecs
+[   12.421734] PM: resume of devices complete after 60.738 msecs
+[   12.431755] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[   12.433037] tegra-dsi 54300000.dsi: cannot get VDD supply
+[   12.506441] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:32 1970
+[   12.930932] PM: Syncing filesystems ... done.
+[   12.936449] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   12.944793] Double checking all user space processes after OOM killer disable... (elapsed 0.000 seconds) 
+[   12.954471] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   12.963301] Suspending console(s) (use no_console_suspend to debug)
+[   13.012244] PM: suspend of devices complete after 41.360 msecs
+[   13.014549] PM: late suspend of devices complete after 2.290 msecs
+[   13.016399] PM: noirq suspend of devices complete after 1.840 msecs
+[   13.016403] Disabling non-boot CPUs ...
+[   13.017272] CPU1: shutdown
+[   13.052517] CPU2: shutdown
+[   13.081848] IRQ17 no longer affine to CPU3
+[   13.082240] CPU3: shutdown
+[   13.106195] Entering suspend state LP1
+[   13.106220] Enabling non-boot CPUs ...
+[   13.136665] CPU1 is up
+[   13.166863] CPU2 is up
+[   13.202184] CPU3 is up
+[   13.203370] PM: noirq resume of devices complete after 1.174 msecs
+[   13.205915] PM: early resume of devices complete after 2.087 msecs
+[   13.267041] PM: resume of devices complete after 61.109 msecs
+[   13.271465] tegra-hdmi 54280000.hdmi: failed to get PLL regulator
+[   13.272924] tegra-dsi 54300000.dsi: cannot get VDD supply
+[   13.347453] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# NVTB SYSTEM SUSPEND TEST COMPLETE
