@@ -1,0 +1,621 @@
+
+
+U-Boot 2015.04-00466-gedec83e90172 (Mar 14 2016 - 10:42:01)
+
+TEGRA124
+Model: Acer Chromebook 13 CB5-311
+DRAM:  4 GiB
+:   Tegra SD/MMC: 0, Tegra SD/MMC: 1, Tegra SD/MMC: 2
+MMC init failed
+Using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Net Initialization Skipped
+No ethernet found.
+Hit any key to stop autoboot:  2  0 
+Tegra124 (Nyan-big) # 
+Tegra124 (Nyan-big) # usb start
+starting USB...
+USB0:   USB EHCI 1.10
+scanning bus 0 for devices... 2 USB Device(s) found
+USB1:   USB EHCI 1.10
+scanning bus 1 for devices... 2 USB Device(s) found
+       scanning usb for storage devices... 1 Storage Device(s) found
+       scanning usb for ethernet devices... 
+Warning: asx0 using MAC address from net device
+1 Ethernet Device(s) found
+Tegra124 (Nyan-big) # mw 0x7000e4a0 0x00080000
+Tegra124 (Nyan-big) # setenv bootargs 'ignore_loglevel console=ttyS0,115200n8 rw root=PARTUUID=4d36e82a-b3c0-4b4b-bfcd-afe5217ac023 rootwait gpt debug noinitrd earlyprintk init=/bin/bash'
+Tegra124 (Nyan-big) # setenv ipaddr 192.168.100.102; setenv serverip 192.168.100.1; setenv tftpserverip 192.168.100.1
+Tegra124 (Nyan-big) # tftpboot 0x82000000 zImage.tegra_defconfig
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.102
+Filename 'zImage.tegra_defconfig'.
+Load address: 0x82000000
+Loading: *#################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #################################################################
+	 #############################
+	 2.8 MiB/s
+done
+Bytes transferred = 6147840 (5dcf00 hex)
+Tegra124 (Nyan-big) # tftpboot 0x83000000 tegra124-nyan-big.dtb
+Using asx0 device
+TFTP from server 192.168.100.1; our IP address is 192.168.100.102
+Filename 'tegra124-nyan-big.dtb'.
+Load address: 0x83000000
+Loading: *#####
+	 2.7 MiB/s
+done
+Bytes transferred = 68183 (10a57 hex)
+Tegra124 (Nyan-big) # bootz 0x82000000 - 0x83000000
+Kernel image @ 0x82000000 [ 0x000000 - 0x5dcf00 ]
+## Flattened Device Tree blob at 83000000
+   Booting using the fdt blob at 0x83000000
+   Using Device Tree in place at 83000000, end 83013a56
+
+Starting kernel ...
+
+Uncompressing Linux... done, booting the kernel.
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.13.0-187049-g569dbb8 (jonathanh@kaivo) (gcc version 4.7.3 20130328 (prerelease) (crosstool-NG linaro-1.13.1-4.7-2013.04-20130415 - Linaro GCC 2013.04)) #1 SMP PREEMPT Sun Sep 3 14:05:53 PDT 2017
+[    0.000000] CPU: ARMv7 Processor [413fc0f3] revision 3 (ARMv7), cr=10c5387d
+[    0.000000] CPU: div instructions available: patching division code
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+[    0.000000] OF: fdt: Machine model: Acer Chromebook 13 CB5-311
+[    0.000000] OF: fdt: Ignoring memory range 0x100000000 - 0x17ffff000
+[    0.000000] debug: ignoring loglevel setting.
+[    0.000000] bootconsole [earlycon0] enabled
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] cma: Reserved 64 MiB at 0xfbc00000
+[    0.000000] On node 0 totalpages: 524287
+[    0.000000] free_area_init_node: node 0, pgdat c0eaf500, node_mem_map eeff7000
+[    0.000000]   Normal zone: 1536 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 196608 pages, LIFO batch:31
+[    0.000000]   HighMem zone: 327679 pages, LIFO batch:31
+[    0.000000] percpu: Embedded 17 pages/cpu @eef80000 s39360 r8192 d22080 u69632
+[    0.000000] pcpu-alloc: s39360 r8192 d22080 u69632 alloc=17*4096
+[    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 522751
+[    0.000000] Kernel command line: ignore_loglevel console=ttyS0,115200n8 rw root=PARTUUID=4d36e82a-b3c0-4b4b-bfcd-afe5217ac023 rootwait gpt debug noinitrd earlyprintk init=/bin/bash
+[    0.000000] PID hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+[    0.000000] Memory: 1999456K/2097148K available (9216K kernel code, 744K rwdata, 2724K rodata, 1024K init, 299K bss, 32156K reserved, 65536K cma-reserved, 1245180K highmem)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+[    0.000000]     fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+[    0.000000]     vmalloc : 0xf0800000 - 0xff800000   ( 240 MB)
+[    0.000000]     lowmem  : 0xc0000000 - 0xf0000000   ( 768 MB)
+[    0.000000]     pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+[    0.000000]     modules : 0xbf000000 - 0xbfe00000   (  14 MB)
+[    0.000000]       .text : 0xc0008000 - 0xc0a00000   (10208 kB)
+[    0.000000]       .init : 0xc0d00000 - 0xc0e00000   (1024 kB)
+[    0.000000]       .data : 0xc0e00000 - 0xc0eba0c8   ( 745 kB)
+[    0.000000]        .bss : 0xc0ec45b0 - 0xc0f0f37c   ( 300 kB)
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] /interrupt-controller@60004000: 160 interrupts forwarded to /interrupt-controller@50041000
+[    0.000000] Tegra clk 127: register failed with -17
+[    0.000004] sched_clock: 32 bits at 1000kHz, resolution 1000ns, wraps every 2147483647500ns
+[    0.008106] clocksource: timer_us: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275 ns
+[    0.017725] Switching to timer-based delay loop, resolution 1000ns
+[    0.024347] arch_timer: cp15 timer(s) running at 12.00MHz (virt).
+[    0.030119] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x2c47f4ee7, max_idle_ns: 440795202497 ns
+[    0.040952] sched_clock: 56 bits at 12MHz, resolution 83ns, wraps every 4398046511096ns
+[    0.049010] Switching to timer-based delay loop, resolution 83ns
+[    0.055269] Console: colour dummy device 80x30
+[    0.059590] Calibrating delay loop (skipped), value calculated using timer frequency.. 24.00 BogoMIPS (lpj=120000)
+[    0.069988] pid_max: default: 32768 minimum: 301
+[    0.074845] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.081344] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.088750] CPU: Testing write buffer coherency: ok
+[    0.093521] /cpus/cpu@0 missing clock-frequency property
+[    0.098767] /cpus/cpu@1 missing clock-frequency property
+[    0.104148] /cpus/cpu@2 missing clock-frequency property
+[    0.109514] /cpus/cpu@3 missing clock-frequency property
+[    0.114882] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.154926] Setting up static identity map for 0x80100000 - 0x801000a0
+[    0.159666] Hierarchical SRCU implementation.
+[    0.175147] Tegra Revision: A01 SKU: 131 CPU Process: 1 SoC Process: 1
+[    0.194930] smp: Bringing up secondary CPUs ...
+[    0.245231] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.325260] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.405300] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.415073] smp: Brought up 1 node, 4 CPUs
+[    0.434497] SMP: Total of 4 processors activated (96.00 BogoMIPS).
+[    0.440742] CPU: All CPU(s) started in SVC mode.
+[    0.446108] devtmpfs: initialized
+[    0.456862] VFP support v0.3: implementor 41 architecture 4 part 30 variant f rev 0
+[    0.462811] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.472572] futex hash table entries: 1024 (order: 4, 65536 bytes)
+[    0.479326] pinctrl core: initialized pinctrl subsystem
+[    0.484514] random: get_random_u32 called from bucket_table_alloc+0xec/0x258 with crng_init=0
+[    0.492760] NET: Registered protocol family 16
+[    0.497711] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.504686] cpuidle: using governor menu
+[    0.517095] No ATAGs?
+[    0.517152] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.525665] hw-breakpoint: maximum watchpoint size is 8 bytes.
+[    0.532506] tegra-mc 70019000.memory-controller: no memory timings for RAM code 0 registered
+[    0.546615] +5V_SYS: supplied by +VDD_MUX
+[    0.548925] +3.3V_SYS: supplied by +VDD_MUX
+[    0.553317] +VDD_LED: Failed to request enable GPIO122: -517
+[    0.558762] reg-fixed-voltage regulators:regulator@5: Failed to register regulator: -517
+[    0.566950] +5V_VDD_TS_SW: Failed to request enable GPIO81: -517
+[    0.572974] reg-fixed-voltage regulators:regulator@6: Failed to register regulator: -517
+[    0.581160] +5V_USB_HS: Failed to request enable GPIO108: -517
+[    0.587014] reg-fixed-voltage regulators:regulator@7: Failed to register regulator: -517
+[    0.595202] +5V_USB_SS: Failed to request enable GPIO109: -517
+[    0.601054] reg-fixed-voltage regulators:regulator@8: Failed to register regulator: -517
+[    0.609302] +1.05V_RUN_AVDD_HDMI_PLL: Failed to request enable GPIO63: -517
+[    0.616221] reg-fixed-voltage regulators:regulator@11: Failed to register regulator: -517
+[    0.624492] +5V_HDMI_CON: Failed to request enable GPIO86: -517
+[    0.630434] reg-fixed-voltage regulators:regulator@12: Failed to register regulator: -517
+[    0.639134] vgaarb: loaded
+[    0.641723] SCSI subsystem initialized
+[    0.645342] libata version 3.00 loaded.
+[    0.649289] usbcore: registered new interface driver usbfs
+[    0.654725] usbcore: registered new interface driver hub
+[    0.660113] usbcore: registered new device driver usb
+[    0.666403] Linux video capture interface: v2.00
+[    0.669892] pps_core: LinuxPPS API ver. 1 registered
+[    0.674900] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.684093] PTP clock support registered
+[    0.688223] tegra-emc 7001b000.emc: no memory timings for RAM code 0 found in DT
+[    0.695525] tegra-emc: probe of 7001b000.emc failed with error -2
+[    0.701789] Advanced Linux Sound Architecture Driver Initialized.
+[    0.708115] Bluetooth: Core ver 2.22
+[    0.711485] NET: Registered protocol family 31
+[    0.715980] Bluetooth: HCI device and connection manager initialized
+[    0.722388] Bluetooth: HCI socket layer initialized
+[    0.727333] Bluetooth: L2CAP socket layer initialized
+[    0.732455] Bluetooth: SCO socket layer initialized
+[    0.737869] clocksource: Switched to clocksource arch_sys_counter
+[    0.775557] NET: Registered protocol family 2
+[    0.778528] TCP established hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.785219] TCP bind hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.791756] TCP: Hash tables configured (established 8192 bind 8192)
+[    0.798279] UDP hash table entries: 512 (order: 2, 16384 bytes)
+[    0.804094] UDP-Lite hash table entries: 512 (order: 2, 16384 bytes)
+[    0.810622] NET: Registered protocol family 1
+[    0.815209] RPC: Registered named UNIX socket transport module.
+[    0.820906] RPC: Registered udp transport module.
+[    0.825661] RPC: Registered tcp transport module.
+[    0.830434] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    0.836931] PCI: CLS 0 bytes, default 64
+[    0.841628] hw perfevents: enabled with armv7_cortex_a15 PMU driver, 7 counters available
+[    0.850001] workingset: timestamp_bits=30 max_order=19 bucket_order=0
+[    0.856126] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.861828] NFS: Registering the id_resolver key type
+[    0.866667] Key type id_resolver registered
+[    0.870931] Key type id_legacy registered
+[    0.875136] random: fast init done
+[    0.880017] bounce: pool size: 64 pages
+[    0.882363] io scheduler noop registered (default)
+[    0.887195] io scheduler mq-deadline registered
+[    0.891807] io scheduler kyber registered
+[    0.896576] tegra-xusb-padctl 7009f000.padctl: failed to setup XUSB ports: -517
+[    0.909328] tegra-apbdma 60020000.dma: Tegra20 APB DMA driver register 32 channels
+[    0.915454] tegra-pmc 7000e400.pmc: i2c-thermtrip node not found, emergency thermal reset disabled.
+[    0.924434] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    0.931328] console [ttyS0] disabled
+[    0.934231] 70006000.serial: ttyS0 at MMIO 0x70006000 (irq = 333, base_baud = 25500000) is a Tegra
+[    0.943252] console [ttyS0] enabled
+[    0.943252] console [ttyS0] enabled
+[    0.949563] bootconsole [earlycon0] disabled
+[    0.949563] bootconsole [earlycon0] disabled
+[    0.959383] tegra-hdmi 54280000.hdmi: failed to get HDMI regulator
+[    0.967266] tegra-dpaux 545c0000.dpaux: failed to get VDD supply: -517
+[    0.974730] panel-simple panel: panel supply power not found, using dummy regulator
+[    0.986246] loop: module loaded
+[    0.989964] as3722 4-0040: AS3722 with revision 0x1 found
+[    1.000179] as3722-sd2: supplied by +5V_SYS
+[    1.004620] as3722-sd3: supplied by +5V_SYS
+[    1.008967] +1.35V_LP0(sd3): Bringing 0uV into 1350000-1350000uV
+[    1.015154] as3722-sd4: supplied by +5V_SYS
+[    1.019510] +1.05V_RUN: Bringing 0uV into 1050000-1050000uV
+[    1.025267] as3722-sd5: supplied by +5V_SYS
+[    1.030896] as3722-ldo0: supplied by +1.35V_LP0(sd2)
+[    1.036639] +1.8V_RUN_CAM: Bringing 0uV into 1800000-1800000uV
+[    1.042686] as3722-ldo2: supplied by +1.8V_VDDIO
+[    1.048337] as3722-ldo3: supplied by +3.3V_SYS
+[    1.052787] +1.00V_LP0_VDD_RTC: Bringing 1100000uV into 1000000-1000000uV
+[    1.060386] as3722-ldo4: supplied by +3.3V_SYS
+[    1.064987] +3.3V_RUN_CAM: Bringing 0uV into 2800000-2800000uV
+[    1.071026] as3722-ldo5: supplied by +1.8V_VDDIO
+[    1.075798] +1.2V_RUN_CAM_FRONT: Bringing 0uV into 1200000-1200000uV
+[    1.082516] +VDDIO_SDMMC3: Bringing 0uV into 1800000-1800000uV
+[    1.088574] as3722-ldo7: supplied by +1.8V_VDDIO
+[    1.093347] +1.05V_RUN_CAM_REAR: Bringing 0uV into 1050000-1050000uV
+[    1.099919] as3722-ldo9: supplied by +5V_SYS
+[    1.104491] +2.8V_RUN_TOUCH: Bringing 0uV into 2800000-2800000uV
+[    1.110723] as3722-ldo10: supplied by +5V_SYS
+[    1.115235] +2.8V_RUN_CAM_AF: Bringing 0uV into 2800000-2800000uV
+[    1.121705] +1.8V_RUN_VPP_FUSE: Bringing 0uV into 1800000-1800000uV
+[    1.144955] cros-ec-spi spi32766.0: packet too long (249 bytes, expected 4)
+[    1.163333] cros-ec-spi spi32766.0: Chrome EC device registered
+[    1.178427] m25p80 spi32765.0: w25q32dw (4096 Kbytes)
+[    1.184326] libphy: Fixed MDIO Bus: probed
+[    1.188435] CAN device driver interface
+[    1.192281] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    1.199231] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    1.204846] pegasus: v0.9.3 (2013/04/25), Pegasus/Pegasus II USB Ethernet driver
+[    1.212270] usbcore: registered new interface driver pegasus
+[    1.217956] usbcore: registered new interface driver asix
+[    1.223365] usbcore: registered new interface driver ax88179_178a
+[    1.229481] usbcore: registered new interface driver cdc_ether
+[    1.235325] usbcore: registered new interface driver smsc75xx
+[    1.241103] usbcore: registered new interface driver smsc95xx
+[    1.246853] usbcore: registered new interface driver net1080
+[    1.252537] usbcore: registered new interface driver cdc_subset
+[    1.258471] usbcore: registered new interface driver zaurus
+[    1.264058] usbcore: registered new interface driver cdc_ncm
+[    1.269805] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    1.276315] ehci-pci: EHCI PCI platform driver
+[    1.280775] tegra-ehci: Tegra EHCI driver
+[    1.285048] usbcore: registered new interface driver cdc_acm
+[    1.290698] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[    1.298710] usbcore: registered new interface driver cdc_wdm
+[    1.304382] usbcore: registered new interface driver usb-storage
+[    1.310571] input: cros_ec as /devices/soc0/7000d400.spi/spi_master/spi32766/spi32766.0/7000d400.spi:cros-ec@0:keyboard-controller/input/input0
+[    1.330755] as3722-rtc as3722-rtc: rtc core: registered as3722-rtc as rtc0
+[    1.337613] as3722-rtc as3722-rtc: RTC interrupt 372
+[    1.344379] tegra_rtc 7000e000.rtc: rtc core: registered 7000e000.rtc as rtc1
+[    1.351529] tegra_rtc 7000e000.rtc: Tegra internal Real Time Clock
+[    1.357806] i2c /dev entries driver
+[    1.361784] usbcore: registered new interface driver uvcvideo
+[    1.367514] USB Video Class driver (1.1.1)
+[    1.371614] gspca_main: v2.14.0 registered
+[    1.375941] lm90 0-004c: 0-004c supply vcc not found, using dummy regulator
+[    1.384628] tegra-wdt 60005000.timer: initialized (heartbeat = 120 sec, nowayout = 0)
+[    1.392958] sdhci: Secure Digital Host Controller Interface driver
+[    1.399138] sdhci: Copyright(c) Pierre Ossman
+[    1.403482] sdhci-pltfm: SDHCI platform and OF driver helper
+[    1.409258] sdhci-tegra 700b0000.sdhci: allocated mmc-pwrseq
+[    1.422020] sdhci-tegra 700b0400.sdhci: Got CD GPIO
+[    1.426890] sdhci-tegra 700b0400.sdhci: Got WP GPIO
+[    1.446010] mmc0: Unknown controller version (3). You may experience problems.
+[    1.453249] mmc0: Invalid maximum block size, assuming 512 bytes
+[    1.517900] mmc0: SDHCI controller on 700b0600.sdhci [700b0600.sdhci] using ADMA
+[    1.525545] usbcore: registered new interface driver usbhid
+[    1.532172] usbhid: USB HID core driver
+[    1.540761] tegra30-i2s 70301100.i2s: DMA channels sourced from device 70300000.ahub
+[    1.588363] max98090 0-0010: MAX98090 REVID=0x43
+[    1.594888] max98090 0-0010: use default 2.8v micbias
+[    1.602372] tegra-snd-max98090 sound: HiFi <-> 70301100.i2s mapping ok
+[    1.609645] mmc0: new high speed MMC card at address 0001
+[    1.615287] mmcblk0: mmc0:0001 MMC16G 14.4 GiB 
+[    1.619958] mmcblk0boot0: mmc0:0001 MMC16G partition 1 2.00 MiB
+[    1.621017] input: GoogleNyanBig Headphones as /devices/soc0/sound/sound/card1/input1
+[    1.621185] input: GoogleNyanBig Mic Jack as /devices/soc0/sound/sound/card1/input2
+[    1.621766] NET: Registered protocol family 10
+[    1.622354] Segment Routing with IPv6
+[    1.622424] mip6: Mobile IPv6
+[    1.622427] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    1.623139] NET: Registered protocol family 17
+[    1.623150] NET: Registered protocol family 15
+[    1.623152] can: controller area network core (rev 20170425 abi 9)
+[    1.623243] NET: Registered protocol family 29
+[    1.623246] can: raw protocol (rev 20170425)
+[    1.623248] can: broadcast manager protocol (rev 20170425 t)
+[    1.623254] can: netlink gateway (rev 20170425) max_hops=1
+[    1.623348] Bluetooth: RFCOMM socket layer initialized
+[    1.623367] Bluetooth: RFCOMM ver 1.11
+[    1.623377] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    1.623383] Bluetooth: BNEP socket layer initialized
+[    1.623385] Bluetooth: HIDP (Human Interface Emulation) ver 1.2
+[    1.623389] Bluetooth: HIDP socket layer initialized
+[    1.623506] Key type dns_resolver registered
+[    1.626057] Registering SWP/SWPB emulation handler
+[    1.634275] +3.3V_RUN: supplied by +3.3V_SYS
+[    1.635093] +VDD_LED: supplied by +VDD_MUX
+[    1.635239] +3.3V_AVDD_HDMI_AP_GATED: supplied by +3.3V_RUN
+[    1.635290] +1.8V_RUN_CAM: supplied by +3.3V_RUN
+[    1.635337] +VDDIO_SDMMC3: supplied by +3.3V_RUN
+[    1.635386] +1.8V_RUN_VPP_FUSE: supplied by +3.3V_RUN
+[    1.635492] +5V_VDD_TS_SW: supplied by +5V_SYS
+[    1.635683] +5V_USB_HS: supplied by +5V_SYS
+[    1.635873] +5V_USB_SS: supplied by +5V_SYS
+[    1.636812] +3.3V_PANEL: supplied by +3.3V_RUN
+[    1.637814] +3.3V_LP0: supplied by +3.3V_SYS
+[    1.638790] +1.05V_RUN_AVDD_HDMI_PLL: supplied by +1.05V_RUN
+[    1.639019] +5V_HDMI_CON: supplied by +5V_SYS
+[    1.639856]  usb3-0: usb3-0 supply vbus not found, using dummy regulator
+[    1.639928]  usb3-1: usb3-1 supply vbus not found, using dummy regulator
+[    1.642265] tegra-sor 54540000.sor: failed to probe output: -517
+[    1.642475] panel-simple panel: panel supply power not found, using dummy regulator
+[    1.708612] tegra-xusb 70090000.usb: Firmware timestamp: 2014-09-16 02:10:07 UTC
+[    1.708633] tegra-xusb 70090000.usb: xHCI Host Controller
+[    1.708655] tegra-xusb 70090000.usb: new USB bus registered, assigned bus number 1
+[    1.710697] tegra-xusb 70090000.usb: hcc params 0x0184f525 hci version 0x100 quirks 0x00010010
+[    1.710727] tegra-xusb 70090000.usb: irq 344, io mem 0x70090000
+[    1.711252] hub 1-0:1.0: USB hub found
+[    1.711278] hub 1-0:1.0: 6 ports detected
+[    1.711703] tegra-xusb 70090000.usb: xHCI Host Controller
+[    1.711711] tegra-xusb 70090000.usb: new USB bus registered, assigned bus number 2
+[    1.711765] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+[    1.712153] hub 2-0:1.0: USB hub found
+[    1.712173] hub 2-0:1.0: 2 ports detected
+[    1.713021] sdhci-tegra 700b0000.sdhci: allocated mmc-pwrseq
+[    1.721368] mmc1: Unknown controller version (3). You may experience problems.
+[    1.721411] mmc1: Invalid maximum block size, assuming 512 bytes
+[    1.721709] mmc1: Switching to 3.3V signalling voltage failed
+[    1.777959] mmc1: SDHCI controller on 700b0000.sdhci [700b0000.sdhci] using ADMA
+[    1.778218] sdhci-tegra 700b0400.sdhci: Got CD GPIO
+[    1.778228] sdhci-tegra 700b0400.sdhci: Got WP GPIO
+[    1.786955] mmc2: Unknown controller version (3). You may experience problems.
+[    1.787012] mmc2: Invalid maximum block size, assuming 512 bytes
+[    1.816440] mmc1: new high speed SDIO card at address 0001
+[    1.848175] mmc2: SDHCI controller on 700b0400.sdhci [700b0400.sdhci] using ADMA
+[    1.943157] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[    1.943160] [drm] No driver support for vblank timestamp query.
+[    1.971417] mmcblk0boot1: mmc0:0001 MMC16G partition 2 2.00 MiB
+[    1.971742] mmcblk0rpmb: mmc0:0001 MMC16G partition 3 128 KiB
+[    1.975741]  mmcblk0: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12
+[    2.009226] mmc2: new high speed SDHC card at address 0007
+[    2.009564] mmcblk2: mmc2:0007 SD08G 7.42 GiB 
+[    2.017890] GPT:Primary header alternate_lba != Alt. header my_lba
+[    2.017895] GPT:3014591 != 15564799
+[    2.017897] GPT:Primary header thinks Alt. header is not at the end of the disk.
+[    2.017899] GPT:3014591 != 15564799
+[    2.017900] GPT: Use GNU Parted to correct GPT errors.
+[    2.017925]  mmcblk2: p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 p12
+[    2.042813] Console: switching to colour frame buffer device 170x48
+[    2.082133] usb 1-2: new high-speed USB device number 2 using tegra-xusb
+[    2.131025] drm drm: fb0:  frame buffer device
+[    2.135513] [drm] Initialized tegra 0.0.0 20120330 for drm on minor 0
+[    2.142491] input: gpio-keys as /devices/soc0/gpio-keys/input/input3
+[    2.149792] as3722-rtc as3722-rtc: setting system clock to 2000-01-01 00:00:23 UTC (946684823)
+[    2.158874] +1.8V_RUN_CAM: disabling
+[    2.162669] +1.2V_RUN_CAM_FRONT: disabling
+[    2.166942] +1.05V_RUN_CAM_REAR: disabling
+[    2.171313] +2.8V_RUN_TOUCH: disabling
+[    2.175241] +2.8V_RUN_CAM_AF: disabling
+[    2.179341] +1.8V_RUN_VPP_FUSE: disabling
+[    2.183530] +5V_VDD_TS_SW: disabling
+[    2.187108] ALSA device list:
+[    2.190132]   #1: GoogleNyanBig
+[    2.400488] uvcvideo: Found UVC 1.00 device HD WebCam (1bcf:2c67)
+[    2.415327] input: HD WebCam: HD WebCam as /devices/soc0/70090000.usb/usb1/1-2/1-2:1.0/input/input5
+[    2.757960] usb 1-3: new high-speed USB device number 3 using tegra-xusb
+[    3.288668] input: tegra-hda HDMI/DP,pcm=3 as /devices/soc0/70030000.hda/sound/card0/input4
+[    3.412192] asix 1-3:1.0 eth0: register 'asix' at usb-70090000.usb-3, ASIX AX88772 USB 2.0 Ethernet, c8:d7:19:90:fa:65
+[    3.423587] EXT4-fs (mmcblk0p3): couldn't mount as ext3 due to feature incompatibilities
+[    3.738884] EXT4-fs (mmcblk0p3): recovery complete
+[    3.743673] EXT4-fs (mmcblk0p3): mounted filesystem with ordered data mode. Opts: (null)
+[    3.751807] VFS: Mounted root (ext4 filesystem) on device 179:3.
+[    3.757913] usb 1-1: new high-speed USB device number 4 using tegra-xusb
+[    3.765777] devtmpfs: mounted
+[    3.769352] Freeing unused kernel memory: 1024K
+bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+root@(none):/# [    3.946225] usb-storage 1-1:1.0: USB Mass Storage device detected
+[    3.953112] scsi host0: usb-storage 1-1:1.0
+mount -t sysfs none /sys
+root@(none):/# 
+root@(none):/# [    4.999625] scsi 0:0:0:0: Direct-Access     SanDisk  SDDR-113         9412 PQ: 0 ANSI: 0
+[    5.172356] sd 0:0:0:0: [sda] 15523840 512-byte logical blocks: (7.95 GB/7.40 GiB)
+[    5.180742] sd 0:0:0:0: [sda] Write Protect is off
+[    5.185523] sd 0:0:0:0: [sda] Mode Sense: 03 00 00 00
+[    5.191739] sd 0:0:0:0: [sda] No Caching mode page found
+[    5.197043] sd 0:0:0:0: [sda] Assuming drive cache: write through
+[    5.222079]  sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10 sda11 sda12 sda13
+[    5.234911] sd 0:0:0:0: [sda] Attached SCSI removable disk
+mount -t debugfs none /sys/kernel/debug
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:29 1970
+[    6.570311] PM: Syncing filesystems ... done.
+[    6.576415] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    6.577525] OOM killer disabled.
+[    6.577526] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    6.578673] Suspending console(s) (use no_console_suspend to debug)
+[    6.791714] Disabling non-boot CPUs ...
+[    6.828071] IRQ17 no longer affine to CPU1
+[    6.948648] Entering suspend state LP1
+[    6.948648] Suspended for 2.802 seconds
+[    6.948658] Enabling non-boot CPUs ...
+[    6.949387] CPU1 is up
+[    6.950033] CPU2 is up
+[    6.950693] CPU3 is up
+[    7.008903] mmc1: Switching to 3.3V signalling voltage failed
+[    7.267902] tegra-sor 54540000.sor: failed to attach SOR: -110
+[    7.579275] OOM killer enabled.
+[    7.582407] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:34 1970
+[    8.838145] PM: Syncing filesystems ... done.
+[    8.844044] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[    8.845261] OOM killer disabled.
+[    8.845262] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[    8.846463] Suspending console(s) (use no_console_suspend to debug)
+[    9.071382] Disabling non-boot CPUs ...
+[    9.227992] IRQ17 no longer affine to CPU3
+[    9.228552] Entering suspend state LP1
+[    9.228552] Suspended for 2.719 seconds
+[    9.228575] Enabling non-boot CPUs ...
+[    9.229329] CPU1 is up
+[    9.229985] CPU2 is up
+[    9.230650] CPU3 is up
+[    9.288914] mmc1: Switching to 3.3V signalling voltage failed
+[    9.498212] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[    9.547834] tegra-sor 54540000.sor: failed to attach SOR: -110
+[    9.868417] OOM killer enabled.
+[    9.871547] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:39 1970
+[   11.117995] PM: Syncing filesystems ... done.
+[   11.123853] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   11.125068] OOM killer disabled.
+[   11.125070] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   11.126276] Suspending console(s) (use no_console_suspend to debug)
+[   11.341433] Disabling non-boot CPUs ...
+[   11.498482] Entering suspend state LP1
+[   11.498482] Suspended for 2.730 seconds
+[   11.498505] Enabling non-boot CPUs ...
+[   11.499266] CPU1 is up
+[   11.499921] CPU2 is up
+[   11.500584] CPU3 is up
+[   11.558732] mmc1: Switching to 3.3V signalling voltage failed
+[   11.768066] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[   11.817782] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   12.131461] OOM killer enabled.
+[   12.134590] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:44 1970
+[   13.388049] PM: Syncing filesystems ... done.
+[   13.393817] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   13.394953] OOM killer disabled.
+[   13.394954] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   13.396137] Suspending console(s) (use no_console_suspend to debug)
+[   13.621574] Disabling non-boot CPUs ...
+[   13.778491] Entering suspend state LP1
+[   13.778491] Suspended for 2.719 seconds
+[   13.778513] Enabling non-boot CPUs ...
+[   13.779270] CPU1 is up
+[   13.779931] CPU2 is up
+[   13.780596] CPU3 is up
+[   13.838933] mmc1: Switching to 3.3V signalling voltage failed
+[   14.048159] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[   14.097760] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   14.412039] OOM killer enabled.
+[   14.415168] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:49 1970
+[   15.678144] PM: Syncing filesystems ... done.
+[   15.684025] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   15.685162] OOM killer disabled.
+[   15.685163] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   15.686346] Suspending console(s) (use no_console_suspend to debug)
+[   15.901580] Disabling non-boot CPUs ...
+[   16.058419] Entering suspend state LP1
+[   16.058419] Suspended for 2.719 seconds
+[   16.058441] Enabling non-boot CPUs ...
+[   16.059200] CPU1 is up
+[   16.059855] CPU2 is up
+[   16.060523] CPU3 is up
+[   16.118759] mmc1: Switching to 3.3V signalling voltage failed
+[   16.377799] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   16.686022] OOM killer enabled.
+[   16.689161] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:54 1970
+[   17.957998] PM: Syncing filesystems ... done.
+[   17.963856] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   17.965075] OOM killer disabled.
+[   17.965077] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   17.966272] Suspending console(s) (use no_console_suspend to debug)
+[   18.181565] Disabling non-boot CPUs ...
+[   18.338394] Entering suspend state LP1
+[   18.338394] Suspended for 2.719 seconds
+[   18.338416] Enabling non-boot CPUs ...
+[   18.339176] CPU1 is up
+[   18.339833] CPU2 is up
+[   18.340495] CPU3 is up
+[   18.399385] mmc1: Switching to 3.3V signalling voltage failed
+[   18.657772] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   18.966464] OOM killer enabled.
+[   18.969608] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:00:59 1970
+[   20.237870] PM: Syncing filesystems ... done.
+[   20.243779] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   20.245000] OOM killer disabled.
+[   20.245001] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   20.246200] Suspending console(s) (use no_console_suspend to debug)
+[   20.461336] Disabling non-boot CPUs ...
+[   20.618368] Entering suspend state LP1
+[   20.618368] Suspended for 2.719 seconds
+[   20.618390] Enabling non-boot CPUs ...
+[   20.619150] CPU1 is up
+[   20.619807] CPU2 is up
+[   20.620473] CPU3 is up
+[   20.678844] mmc1: Switching to 3.3V signalling voltage failed
+[   20.888058] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[   20.937697] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   21.251657] OOM killer enabled.
+[   21.254789] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:04 1970
+[   22.517714] PM: Syncing filesystems ... done.
+[   22.523552] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   22.524777] OOM killer disabled.
+[   22.524779] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   22.525980] Suspending console(s) (use no_console_suspend to debug)
+[   22.741086] Disabling non-boot CPUs ...
+[   22.888376] Entering suspend state LP1
+[   22.888376] Suspended for 2.729 seconds
+[   22.888399] Enabling non-boot CPUs ...
+[   22.889157] CPU1 is up
+[   22.889815] CPU2 is up
+[   22.890483] CPU3 is up
+[   22.948750] mmc1: Switching to 3.3V signalling voltage failed
+[   23.158031] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[   23.207637] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   23.525956] OOM killer enabled.
+[   23.529097] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:09 1970
+[   24.788012] PM: Syncing filesystems ... done.
+[   24.793840] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   24.794978] OOM killer disabled.
+[   24.794979] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   24.796162] Suspending console(s) (use no_console_suspend to debug)
+[   25.001331] Disabling non-boot CPUs ...
+[   25.158358] Entering suspend state LP1
+[   25.158358] Suspended for 2.729 seconds
+[   25.158381] Enabling non-boot CPUs ...
+[   25.159143] CPU1 is up
+[   25.159805] CPU2 is up
+[   25.160471] CPU3 is up
+[   25.218609] mmc1: Switching to 3.3V signalling voltage failed
+[   25.427990] usb 1-1: reset high-speed USB device number 4 using tegra-xusb
+[   25.477617] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   25.791732] OOM killer enabled.
+[   25.794861] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# rtcwake -d rtc1 -m mem -s 3
+rtcwake: assuming RTC uses UTC ...
+rtcwake: wakeup from "mem" using /dev/rtc1 at Thu Jan  1 00:01:14 1970
+[   27.057482] PM: Syncing filesystems ... done.
+[   27.063035] Freezing user space processes ... (elapsed 0.001 seconds) done.
+[   27.064244] OOM killer disabled.
+[   27.064245] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+[   27.065443] Suspending console(s) (use no_console_suspend to debug)
+[   27.271384] Disabling non-boot CPUs ...
+[   27.428327] Entering suspend state LP1
+[   27.428327] Suspended for 2.729 seconds
+[   27.428350] Enabling non-boot CPUs ...
+[   27.429112] CPU1 is up
+[   27.429776] CPU2 is up
+[   27.430447] CPU3 is up
+[   27.488571] mmc1: Switching to 3.3V signalling voltage failed
+[   27.747670] tegra-sor 54540000.sor: failed to attach SOR: -110
+[   28.552189] OOM killer enabled.
+[   28.555318] Restarting tasks ... done.
+root@(none):/# 
+root@(none):/# NVTB SYSTEM SUSPEND TEST COMPLETE
